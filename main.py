@@ -3,14 +3,17 @@ import sys
 from reconciliation.reconciliation import *
 
 if __name__ == '__main__':
+    in_path = 'recon.in'
+    out_path = 'recon.out'
     if len(sys.argv) == 3:
         in_path = sys.argv[1]
         out_path = sys.argv[2]
+    elif len(sys.argv) == 2:
+        in_path = sys.argv[1]
     elif len(sys.argv) == 1:
-        in_path = 'recon.in'
-        out_path = 'recon.out'
+        pass
     else:
-        raise ValueError('Incorrect number of arguments. Expected 0 or 2; got {}'.format(len(sys.argv) - 1))
+        raise ValueError('Incorrect number of arguments. Expected 0, 1, or 2; got {}'.format(len(sys.argv) - 1))
 
     d0_pos, d1_trn, d1_pos = read_recon_in(in_path)
 
