@@ -4,7 +4,7 @@
     3. Does the output order matter?
 
 """
-from decimal import *
+from decimal import Decimal
 
 
 def read_recon_in(in_file):
@@ -82,7 +82,7 @@ def transaction_data_list_create(in_trans_list):
                     amount = tuple[3] (Decimal value of cash exchanged)
     """
 
-    return tuple(t.split(' ') for t in in_trans_list)
+    return [tuple(t.split(' ')) for t in in_trans_list]
 
 
 def position_update(in_transaction, position_dict):
