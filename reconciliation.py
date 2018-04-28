@@ -133,6 +133,9 @@ def bulk_position_update(in_trans_list, position_dict):
 def reconcile_positions(pos_dict_1, pos_dict_2):
     """ Reconciles two position dictionaries into a new dictionary.
 
+        I had run through a number of implementations of this function before
+        settling on this one. See the repository history for further details.
+
         Parameters:
             pos_dict_1 (dict): Position data post-transactions
             pos_dict_2 (dict): Position data reported by "bank"
@@ -156,57 +159,6 @@ def reconcile_positions(pos_dict_1, pos_dict_2):
 
         if symbol_diff != 0:
             res[symbol] = symbol_diff
-
-    return res
-
-
-def reconcile_positions_2(pos_dict_1, pos_dict_2):
-    res = {}
-
-    dict_1_keys = set(pos_dict_1.keys())
-    dict_2_keys = set(pos_dict_2.keys())
-
-    left_keys = dict_1_keys.difference(dict_2_keys) # stuff i have that wasn't reported
-    middle_keys = dict_1_keys.intersection(dict_2_keys) # stuff i have that was reported
-    right_keys = dict_2_keys.difference(dict_1_keys) # stuff i don't have that was reported
-
-    for symbol in left_keys:
-        symbol_diff = pos_dict_1[symbol] * -1
-        if symbol_diff != 0:
-            res[symbol] = symbol_diff
-
-    for symbol in middle_keys:
-        symbol_diff = pos_dict_2[symbol] - pos_dict_1[symbol]
-        if symbol_diff != 0:
-            res[symbol] = symbol_diff
-
-    for symbol in right_keys:
-        symbol_diff = pos_dict_2[symbol]
-        if symbol_diff != 0:
-            res[symbol] = symbol_diff
-
-    return res
-
-
-def get_symbol_value_reconcile(symbol, position_dict):
-    try:
-        val = position_dict[symbol]
-    except KeyError:
-        val = 0
-    return val
-
-
-def reconcile_positions_3(pos_dict_1, pos_dict_2):
-    res = {}
-
-    all_keys = list(pos_dict_1.keys()) + list(pos_dict_2.keys())
-
-    for symbol in all_keys:
-        d0_val = get_symbol_value_reconcile(symbol, pos_dict_1)
-        d1_val = get_symbol_value_reconcile(symbol, pos_dict_2)
-        diff = d1_val - d0_val
-        if diff != 0:
-            res[symbol] = diff
 
     return res
 
