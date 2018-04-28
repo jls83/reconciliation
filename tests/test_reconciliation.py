@@ -1,6 +1,6 @@
 import unittest
 
-from reconciliation import *
+from reconciliation.reconciliation import *
 
 d0_pos_test = [
     'AAPL 100',
