@@ -1,6 +1,6 @@
 # Reconciliation
 
-Reconciles position data and transactions
+Reconciles position data and transactions. See included `recon.in` file for example input file.
 
 ## Requirements
 
