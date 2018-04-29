@@ -8,7 +8,7 @@ Reconciles position data and transactions. See included `recon.in` file for exam
 
 ## Usage
 
-Invoke the program using one of the following:
+Clone this repository, then invoke the program using one of the following:
 
 * `$ python main.py`
     - Will look for `recon.in` in the parent folder and write to `recon.out` in the parent folder
