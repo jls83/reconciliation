@@ -1,3 +1,4 @@
+import os
 import sys
 
 from reconciliation.reconciliation import *
@@ -14,6 +15,9 @@ if __name__ == '__main__':
         pass
     else:
         raise ValueError('Incorrect number of arguments. Expected 0, 1, or 2; got {}'.format(len(sys.argv) - 1))
+
+    if not os.path.exists(in_path):
+        raise ValueError('No input file at specified path.')
 
     d0_pos, d1_trn, d1_pos = read_recon_in(in_path)
 
