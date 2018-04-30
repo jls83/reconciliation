@@ -1,9 +1,3 @@
-"""
-    1. Will there always be an entry for "Cash" in D0-POS?
-    2. Should we account for dividends from stocks not in D0-POS?
-    3. Does the output order matter?
-
-"""
 from decimal import Decimal
 
 
@@ -150,11 +144,11 @@ def reconcile_positions(pos_dict_1, pos_dict_2):
     all_keys = list(pos_dict_1.keys()) + list(pos_dict_2.keys())
 
     for symbol in all_keys:
-        if symbol not in pos_dict_2: # "left" keys
+        if symbol not in pos_dict_2:  # "left" keys
             symbol_diff = pos_dict_1[symbol] * -1
-        elif symbol not in pos_dict_1: # "right" keys
+        elif symbol not in pos_dict_1:  # "right" keys
             symbol_diff = pos_dict_2[symbol]
-        else: # "middle" keys
+        else:  # "middle" keys
             symbol_diff = pos_dict_2[symbol] - pos_dict_1[symbol]
 
         if symbol_diff != 0:
