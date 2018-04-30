@@ -141,7 +141,7 @@ def reconcile_positions(pos_dict_1, pos_dict_2):
 
     res = {}
 
-    all_keys = list(pos_dict_1.keys()) + list(pos_dict_2.keys())
+    all_keys = set(list(pos_dict_1.keys()) + list(pos_dict_2.keys()))
 
     for symbol in all_keys:
         if symbol not in pos_dict_2:  # "left" keys
